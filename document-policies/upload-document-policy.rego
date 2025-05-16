@@ -2,7 +2,7 @@ package document.upload
 
 # https://localhost:8181/v1/data/document/upload/allow
 
-default allow = false
+# default allow = false
 
 allow if {
 	resources = input.resources

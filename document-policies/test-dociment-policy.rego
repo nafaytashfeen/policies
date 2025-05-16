@@ -1,6 +1,6 @@
 package document.test
 
-default allow = false
+# default allow = false
 
 allow if {
   input.userId == "bob"

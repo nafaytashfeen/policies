@@ -4,7 +4,7 @@ import data.utils.role.get_user_roles
 
 # https://localhost:8181/v1/data/document/send/allow
 
-default allow = false
+# default allow = false
 
 # Should be signed at least by a manager that is not the author
 some_signature_by_manager(signatures, roles, authorId) if {
