@@ -2,10 +2,10 @@ package document.sign
 
 # https://localhost:8181/v1/data/document/sign/allow
 
-# default allow := false
+default allow = false
 
 allow if {
-	resources := input.resources
+	resources = input.resources
 	input.path == ["api", "document", resources.documentId, "sign"]
 	input.method == "POST"
 
