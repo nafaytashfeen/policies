@@ -2,7 +2,7 @@ package document.sign
 
 # https://localhost:8181/v1/data/document/sign/allow
 
-# default allow = false
+default allow = false
 
 allow if {
 	resources = input.resources
