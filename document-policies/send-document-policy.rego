@@ -1,5 +1,7 @@
 package document.send
 
+import future.keywords.http
+
 import data.utils.role.get_user_roles
 
 # https://localhost:8181/v1/data/document/send/allow
@@ -31,17 +33,25 @@ some_signature_by_sender(signatures, userId) if {
 	userId == currentSignature.authorId
 }
 
-allow if {
-	resources = input.resources
+allow if {   
+    # Fetch the policy‐data from the Express endpoint
+    resp := http.send({
+        "method": "GET",
+        "url": sprintf(
+          "http://localhost:3000/api/policy-data/documents/%s?userId=%s&receiverId=%s",
+          [input.resources.document.id, input.resources.userId, input.resources.receiverId]
+        )
+    })
+    resources := resp.body
 
 	input.path == ["api", "document", resources.document.id, "send"]
 	input.method == "POST"
 
-	userId = resources.userId
-	authorId = resources.document.authorId
-	receiverId = resources.receiverId
-	roles = resources.roles
-	signatures = resources.document.signatures
+	userId := resources.userId
+    authorId := resources.document.authorId
+    receiverId := resources.receiverId
+    roles := resources.roles
+    signatures := resources.document.signatures
 
 	# Receiver shoud match document receiver
 	receiverId == resources.document.receiverId
