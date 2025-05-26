@@ -1,5 +1,5 @@
 package document.upload
-import future.keywords.http
+# import future.keywords.http
 
 # https://localhost:8181/v1/data/document/upload/allow
 
