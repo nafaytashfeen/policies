@@ -20,7 +20,7 @@ allow if {
     resources := resp.body
 
     # 2. Match path & method
-    input.path   == ["api", "document", input.documentId, "sign"]
+    input.path   == ["document", input.documentId, "sign"]
     input.method == "POST"
 
     # 3. Auth user must be an employee

@@ -7,7 +7,7 @@ default allow = false
 
 allow if {
 
-	input.path == ["api", "document", "upload"]
+	input.path == ["document", "upload"]
 	input.method == "POST"
 
     resp := http.send({

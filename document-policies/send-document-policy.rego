@@ -44,7 +44,7 @@ allow if {
     })
     resources := resp.body
 
-	input.path == ["api", "document", resources.document.id, "send"]
+	input.path == ["document", resources.document.id, "send"]
 	input.method == "POST"
 
 	userId := resources.userId
