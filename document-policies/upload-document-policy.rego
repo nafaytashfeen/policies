@@ -10,14 +10,7 @@ allow if {
 	input.path == ["document", "upload"]
 	input.method == "POST"
 
-    resp := http.send({
-        "method": "GET",
-        "url": sprintf(
-        "http://localhost:3000/api/policy-data/upload?userId=%s&authorId=%s",
-        [input.userId, input.content.authorId]  # or input.body.authorId
-        )
-    })
-    resources := resp.body
+    resources := input.resources
 
 	user_id = resources.user.id
 	document_author_id = resources.document.authorId

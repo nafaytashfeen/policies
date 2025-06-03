@@ -34,15 +34,7 @@ some_signature_by_sender(signatures, userId) if {
 }
 
 allow if {   
-    # Fetch the policy‐data from the Express endpoint
-    resp := http.send({
-        "method": "GET",
-        "url": sprintf(
-          "http://localhost:3000/api/policy-data/documents/%s?userId=%s&receiverId=%s",
-          [input.resources.document.id, input.resources.userId, input.resources.receiverId]
-        )
-    })
-    resources := resp.body
+    resources := input.resources
 
 	input.path == ["document", resources.document.id, "send"]
 	input.method == "POST"

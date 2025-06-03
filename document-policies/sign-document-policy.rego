@@ -8,18 +8,8 @@ import data.utils.role.get_user_roles
 default allow = false
 
 allow if {
+    resources := input.resources
 
-    # Fetch the policy‐data from the Express endpoint
-    resp := http.send({
-        "method": "GET",
-        "url": sprintf(
-          "http://localhost:3000/api/policy-data/documents/%s?userId=%s",
-          [input.documentId, input.userId]
-        )
-    })
-    resources := resp.body
-
-    # 2. Match path & method
     input.path   == ["document", input.documentId, "sign"]
     input.method == "POST"
 
